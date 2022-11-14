@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>success</title>
+    </head>
+    <body>
+        <h1>success</h1>
+        <p th:text="${session.info}">测试1</p>
+        <p th:text="${#request.getAttribute('info')}">测试2</p>
+        <p th:text="${info}">测试3</p>
+        <a th:href="@{/success}">success</a>
+    </body>
+</html>

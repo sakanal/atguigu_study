@@ -1,0 +1,48 @@
+person:
+  #String
+  userName: zhangsan
+#单引号会将特殊字符（\）作为字符串输出（\n作为\\n），双引号会转义特殊字符（\）（\n作为换行符）
+  #Boolean
+  boss: false
+  #Date
+  birth: 2019/12/12 20:12:33
+  #Integer
+  age: 18
+  #Pet
+  pet:
+    name: tomcat
+    weight: 23.4
+  #String[]
+  interests: [篮球,游泳]
+  #List<String>
+  animal:
+    - jerry
+    - mario
+  #Map<String,Object>
+  score:
+    english:
+      first: 30
+      second: 40
+      third: 50
+    math: [131,140,148]
+    chinese: {first: 128,second: 136}
+  #Set<Double>
+  salarys: [3999,4999.98,5999.99]
+  #Map<String,List<Pet>>
+  allPets:
+    sick:
+      - {name: tom}
+      - {name: jerry,weight: 47}
+      - name: Tomcat
+        weight: 50
+    health: [{name: mario,weight: 47}]
+
+
+
+name: zhangsan
+name1: lisi
+personTest:
+  name: ${name}
+  address:
+    - beijing
+    - shanghai

@@ -1,0 +1,9 @@
+#spring:
+#  mvc:
+#    static-path-pattern: /images/**
+    #http://localhost:8080/images/images/Utaha.jpg
+#  web:
+#    resources:
+#      static-locations: classpath:/images/  #[classpath:/images/,/js/,/css/]
+      #http://localhost:8080/images/Utaha.jpg
+      #/images/是static-path-pattern中的设置，不是指文件夹

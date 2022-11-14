@@ -1,0 +1,4 @@
+spring:
+  redis:
+    host: 127.0.0.1 #reids的主机Ip
+    port: 6379

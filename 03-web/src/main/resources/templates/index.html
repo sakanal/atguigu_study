@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>首页</title>
+    </head>
+    <body>
+        <h1>首页</h1>
+        <form th:action="@{/user}" method="get">
+            <input type="submit" value="REST-GET-提交">
+        </form>
+        <form th:action="@{/user}" method="post">
+            <input type="submit" value="REST-POST-提交">
+        </form>
+        <form th:action="@{/user}" method="post">
+            <input type="hidden" name="_m" value="put">
+            <input type="submit" value="REST-PUT-提交">
+        </form>
+        <form th:action="@{/user}" method="post">
+            <input type="hidden" name="_m" value="delete">
+            <input type="submit" value="REST-DELETE-提交">
+        </form>
+        <a th:href="@{/success}">success</a>
+        <a th:href="@{/file}">file</a>
+    </body>
+</html>
