@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        init-method:    调用bean的初始化方法    方法名可以随意
+        destroy-method: 调用bean的销毁方法
+    -->
+    <bean id="orders" class="com.sakanal.Spring.IOC.usexml.bean.lifecycle.Orders" init-method="initMethod" destroy-method="destroyMethod">
+        <property name="name" value="手机"/>
+    </bean>
+    <!--
+        配置后置处理器
+        会对当前配置文件中的所有bean实例都添加后置处理器进行处理
+    -->
+    <bean id="myBeanPost" class="com.sakanal.Spring.IOC.usexml.bean.lifecycle.MyBeanPost"/>
+</beans>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-model="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <div id="div0">
+            <span>{{message}}</span><br>
+<!--            <input type="button" value="打招呼" onclick="hello()"><br>-->
+            <input type="text" v-bind:value="uname"><br>
+            <input type="text" :value="uname"><br>
+            <input type="text" v-model:value="uname"><br>
+            <input type="text" v-model="uname"><br>
+            <p>{{uname}}</p>
+        </div>
+        <div id="div1">
+            <input type="text" v-model="flag">
+            <p v-if="flag">1.v-if="flag:{{flag}}"</p>
+            <p v-if="!flag">2.v-if="!flag:{{!flag}}"</p>
+            <p v-else="flag">3.v-else="flag:{{flag}}"</p>
+            <p v-show="flag">4.v-show="flag:{{flag}}"</p>
+        </div>
+        <div id="div2">
+            <ul>
+                <li v-for="fruit in fruitList">{{fruit}}</li>
+            </ul>
+        </div>
+        <div id="div3">
+            <table>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>专业</th>
+                </tr>
+                <tr v-for="employee in employeeList">
+                    <td>{{employee.empId}}</td>
+                    <td>{{employee.empName}}</td>
+                    <td>{{employee.empAge}}</td>
+                    <td>{{employee.empSubject}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="div4">
+            <p>{{message}}</p>
+            <button v-on:click="reverseMessage">Click me,reverse message</button>
+            <button @click="reverseMessage">Click me,reverse message</button>
+        </div>
+        <div id="div5">
+            <div id="area" v-on:mousemove="recordPosition" style="width: 100px;height: 100px;border-style: solid"></div>
+            <p id="showPosition">{{position}}</p>
+        </div>
+        <div id="div6">
+            <p>尊姓：{{firstName}}</p>
+            <p>大名：{{lastName}}</p>
+            尊姓：<input type="text" v-model="firstName" /><br/>
+            大名：<input type="text" v-model="lastName" /><br/>
+            <p>全名：{{fullName}}</p>
+        </div>
+    </body>
+    <script type="text/javascript" src="script/vue.js"></script>
+    <script type="text/javascript" src="script/axois.js"></script>
+    <script type="text/javascript">
+        window.onload=function(){
+            var vue=new Vue({
+                el:"#div0",
+                data:{
+                    message:"Hello world!",
+                    uname:"张三丰",
+                },
+            });
+            var vue=new Vue({
+                el:"#div1",
+                data:{
+                    flag:false,
+                },
+            });
+            var vue=new Vue({
+                el:"#div2",
+                data:{
+                    "fruitList": [
+                        "apple",
+                        "banana",
+                        "orange",
+                        "grape",
+                        "dragonfruit"
+                    ]
+                }
+            });
+            var vue = new Vue({
+                el:"#div3",
+                data:{
+                    employeeList:[
+                        {
+                            empId:11,
+                            empName:"tom",
+                            empAge:111,
+                            empSubject:"java"
+                        },
+                        {
+                            empId:22,
+                            empName:"jerry",
+                            empAge:222,
+                            empSubject:"php"
+                        },
+                        {
+                            "empId":33,
+                            "empName":"bob",
+                            "empAge":333,
+                            "empSubject":"python"
+                        }
+                    ]
+                }
+            });
+            var vue = new Vue({
+                "el":"#div4",
+                "data":{
+                    "message":"Hello Vue!"
+                },
+                "methods":{
+                    "reverseMessage":function(){
+                        this.message = this.message.split("").reverse().join("");
+                    }
+                }
+            });
+            var vue = new Vue({
+                "el":"#div5",
+                "data":{
+                    "position":"暂时没有获取到鼠标的位置信息"
+                },
+                "methods":{
+                    "recordPosition":function(event){
+                        this.position = event.clientX + " " + event.clientY;
+                    }
+                }
+            });
+            var vue = new Vue({
+                "el":"#div6",
+                "data":{
+                    "firstName":"jim",
+                    "lastName":"green",
+                    "fullName":"jim green"
+                },
+                "watch":{
+                    "firstName":function(inputValue){
+                        this.fullName = inputValue + " " + this.lastName;
+                    },
+                    "lastName":function(inputValue){
+                        this.fullName = this.firstName + " " + inputValue;
+                    }
+                }
+            });
+        }
+        /*function hello(){
+            person.sayHello();
+        }
+        // var person=new Object();
+        // person.pid="p001";
+        // person.pname="jim";
+        // person.sayHello=function (){
+        //     alert("Hello world");
+        // }
+        var person={
+            "pid":"p001",
+            "pname":"jim",
+            "sayHello":function (){
+                alert("Hello world");
+            }
+        };*/
+    </script>
+</html>

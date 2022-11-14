@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        实现自动装配
+        bean标签属性autowire，配置自动装配
+        autowire属性常用两个值：
+            byName：根据属性名称注入，要注入bean的id值和类属性名称一样
+            byType：根据属性类型注入，如果有多个类型的相同要注入bean会报错
+     -->
+    <!--byName-->
+    <!--<bean id="employee" class="com.sakanal.Spring.bean.autowire.Employee" autowire="byName">-->
+    <!--byType-->
+    <bean id="employee" class="com.sakanal.Spring.IOC.usexml.bean.autowire.Employee" autowire="byType">
+        <property name="name" value="Tom"/>
+        <!--手动装配-->
+        <!--<property name="department" ref="department"/>-->
+    </bean>
+    <bean id="department" class="com.sakanal.Spring.IOC.usexml.bean.autowire.Department">
+        <property name="name" value="研发部"/>
+    </bean>
+</beans>

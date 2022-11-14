@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="a/b/c.html">
+		这是index.html<br>
+		<input type="submit"><br>
+	</form>
+	<a href="http://localhost:8080/Student_Javaweb/ForwardC">请求转发到a/b/c.html</a><br>
+	<a href="/">斜杆</a><br><br><br>
+	<!-- 
+	
+	在web中 / 斜杆也是一种绝对路径
+	
+		/斜杆  如果被  浏览器  解析，得到的地址时：http://ip:port
+				<a href="/">斜杆</a>
+				
+		/斜杆  如果被  服务器  解析，得到的地址时：http://ip:port/工程路径
+				1、<url-pattern>/Servlet1</url-pattern>
+				2、servletContext.getRealPath("/");
+				3、request.getRequestDispatcher("/");
+				
+		特殊情况：response.sendRediect("/");			吧斜杆发送给浏览器解析。得到http://ip:port
+	 -->
+	
+	
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--
+	 base标签设置页面相对路径工作时参照的地址
+	href 属性就是参数的地址值
+	相当于将地址值放入需要跳转标签的href的前面
+	http://localhost:8080/atguigu/JavaWeb/a/b/c.html			 	../../index.html
+	
+	base标签中的c.html可以省略，但是斜杠不能省
+	http://localhost:8080/test/a/b/c.html  ==  http://localhost:8080/atguigu/JavaWeb/a/b/
+ -->
+<base href="http://localhost:8080/atguigu/JavaWeb/a/b/c.html">
+</head>
+<body>
+	这是a/b/c.html<br>
+	<a href="../../index.html">跳回</a>
+	<!-- 
+		使用请求转发的方式跳转到该页面，会使浏览器的地址栏中的地址为：工程名/xml文件中的url路径（注解名）
+		这样使得在通过  相对路径  进行跳转时发生问题
+	 -->
+</body>
+</html>

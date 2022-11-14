@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--内部bean-->
+    <bean id="employee1" class="com.sakanal.Spring.IOC.usexml.bean.Employee">
+        <!--设置两个普通属性-->
+        <property name="name" value="lucy"/>
+        <property name="sex" value="女"/>
+        <!--设置对象类型属性-->
+        <property name="department">
+            <!--内部bean不需要id-->
+            <bean class="com.sakanal.Spring.IOC.usexml.bean.Department">
+                <property name="name" value="研发部"/>
+            </bean>
+        </property>
+    </bean>
+
+
+    <!--级联赋值-->
+    <bean id="employee2" class="com.sakanal.Spring.IOC.usexml.bean.Employee">
+        <!--设置两个普通属性-->
+        <property name="name" value="Tom"/>
+        <property name="sex" value="男"/>
+        <!--设置对象类型属性-->
+        <property name="department" ref="department"/>
+    </bean>
+    <bean id="department" class="com.sakanal.Spring.IOC.usexml.bean.Department">
+        <property name="name" value="财务部"/>
+    </bean>
+
+    <!--级联赋值-->
+    <bean id="employee3" class="com.sakanal.Spring.IOC.usexml.bean.Employee">
+        <!--设置两个普通属性-->
+        <property name="name" value="Jark"/>
+        <property name="sex" value="男"/>
+        <!--设置对象类型属性-->
+        <property name="department" ref="department"/>
+        <property name="department.name" value="安保部"/>
+    </bean>
+
+</beans>

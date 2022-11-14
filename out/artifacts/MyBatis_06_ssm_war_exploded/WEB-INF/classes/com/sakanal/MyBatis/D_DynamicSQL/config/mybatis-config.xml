@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="com/sakanal/MyBatis/D_DynamicSQL/properties/jdbc.properties"/>
+    <typeAliases>
+        <package name="com.sakanal.MyBatis.D_DynamicSQL.pojo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driverClassName}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <databaseIdProvider type="DB_VENDOR">
+        <!--为不同的数据库厂商写别名-->
+        <property name="MySQL" value="mysql"/>
+        <property name="Oracle" value="oracle"/>
+        <property name="SQL Server" value="sqlserver"/>
+        <!--在mapper.xml文件中<select id="" resultType="" databaseId="mysql">databaseId里写value值-->
+    </databaseIdProvider>
+    <mappers>
+        <mapper resource="com/sakanal/MyBatis/D_DynamicSQL/dao/UserMapper.xml"/>
+    </mappers>
+</configuration>

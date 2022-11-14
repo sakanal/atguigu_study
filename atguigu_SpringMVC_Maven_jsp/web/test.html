@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>练习</title>
+    </head>
+    <body>
+        <table id="dataTable" border="1">
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>专业</th>
+            </tr>
+            <tr v-for="employee in employeeList">
+                <td>{{employee.empId}}</td>
+                <td>{{employee.empName}}</td>
+                <td>{{employee.empAge}}</td>
+                <td>{{employee.empSubject}}</td>
+            </tr>
+        </table>
+        <div id="appDiv">
+            编号：<input type="text" v-model="empId" /><br/>
+            姓名：<input type="text" v-model="empName" /><br/>
+            年龄：<input type="text" v-model="empAge" /><br/>
+            专业：<input type="text" v-model="empSubject" /><br/>
+            <!-- 第二部分：显示收集到的文本框数据的p标签 -->
+            <p>{{empId}}-{{empName}}-{{empAge}}-{{empSubject}}</p>
+            <!-- 第三部分：按钮 -->
+            <button type="button" @click="addRecord">添加记录</button>
+
+        </div>
+    </body>
+    <script type="text/javascript" src="script/vue.js"></script>
+    <script type="text/javascript">
+        window.onload=function(){
+            var dataTable=new Vue({
+                el:"#dataTable",
+                data:{
+                    employeeList: [
+                        {
+                            "empId": 1,
+                            "empName": "tom",
+                            "empAge": 11,
+                            "empSubject": "java"
+                        },
+                        {
+                            "empId": 2,
+                            "empName": "jerry",
+                            "empAge": 22,
+                            "empSubject": "php"
+                        },
+                        {
+                            "empId": 3,
+                            "empName": "peter",
+                            "empAge": 33,
+                            "empSubject": "python"
+                        }
+                    ]
+                }
+            });
+            var appDiv = new Vue({
+                "el":"#appDiv",
+                "data":{
+                    // 初始值设置空字符串即可
+                    "empId":"",
+                    "empName":"",
+                    "empAge":"",
+                    "empSubject":""
+                },
+                methods:{
+                    addRecord:function (value){
+                        console.log("我点击了那个按钮……");
+                        console.log(this.empId);
+                        console.log(this.empName);
+                        console.log(this.empAge);
+                        console.log(this.empSubject);
+                        var employee = {
+                            "empId":this.empId,
+                            "empName":this.empName,
+                            "empAge":this.empAge,
+                            "empSubject":this.empSubject
+                        };
+                        dataTable.employeeList.push(employee);
+                        // alert("我点击了那个按钮……");
+                    }
+                }
+            });
+        }
+    </script>
+</html>

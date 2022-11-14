@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>success</title>
+    </head>
+    <body>
+        <h1>Success</h1>
+        <p th:text="${testRequestScope}"/>
+<!--        <p th:text="${#request.getAttribute('testRequestScope')}"/>-->
+        <p th:text="${session.testSessionScope}"/>
+        <!--Attempted to call method getAttribute(java.lang.String) on null context object-->
+<!--        <p th:text="${#session.getAttribute('testSessionScope')}"/>-->
+<!--        <p th:text="${#session.getAttribute('testApplicationScope')}"/>-->
+
+        <p th:text="${testRequest}"/>
+
+        <p th:text="${testMethod}"/>
+        <p th:text="${value}"/>
+        <p th:text="${value.name}"/>
+        <p th:text="${value.password}"/>
+        <p th:text="${value.gender}"/>
+    </body>
+</html>
