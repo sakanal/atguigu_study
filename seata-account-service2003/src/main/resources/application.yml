@@ -1,0 +1,49 @@
+server:
+  port: 2003
+
+spring:
+  application:
+    name: seata-account-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+#        group: SEATA_GROUP
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_account?serverTimezone=UTC
+    username: root
+    password: 123456
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+seata:
+  tx-service-group: my-test-tx-group  #config.txt  里面的 group
+  service:
+    vgroup-mapping:
+      my-test-tx-group: default
+  enabled: true
+  enable-auto-data-source-proxy: true #设为true就不用再手动配置数据源代理
+  config:
+    type: nacos
+    nacos:
+      serverAddr: localhost:8848
+      namespace: ""
+      group: SEATA_GROUP
+      data-id: seataServer.properties
+      username: nacos
+      password: nacos
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: localhost:8848
+      group: SEATA_GROUP
+      namespace: ""
+      username: nacos
+      password: nacos

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.sakanal.springcloud</groupId>
+  <artifactId>SpringCloud</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <modules>
+      <!--配置中心服务端-->
+      <module>cloud-config-center-3344</module>
+      <!--配置中心客户端-->
+      <module>cloud-config-client-3355</module>
+      <!--配置中心客户端-->
+      <module>cloud-config-client-3366</module>
+      <!--添加了Hystrix的服务提供者-->
+      <module>cloud-provider-hystrix-payment8001</module>
+      <!--添加了Stream（rabbitmq）的生产者-->
+      <module>cloud-stream-rabbitmq-provider8801</module>
+      <!--添加了Stream（rabbitmq）的消费者-->
+      <module>cloud-stream-rabbitmq-consumer8802</module>
+      <!--添加了Stream（rabbitmq）的消费者-->
+      <module>cloud-stream-rabbitmq-consumer8803</module>
+      <!--注册到Eureka的服务提供者，添加了Zipkin（Sleuth）链路监控-->
+      <module>cloud-provider-payment8001</module>
+      <!--注册到Eureka的服务提供者-->
+      <module>cloud-provider-payment8002</module>
+      <!--注册到ZooKeeper的服务提供者-->
+      <module>cloud-provider-payment8004</module>
+      <!--注册到Consul的服务提供者-->
+      <module>cloud-provider-payment8006</module>
+      <!--普通的消费者（Eureka），添加了Zipkin（Sleuth）链路监控-->
+      <module>cloud-consumer-order80</module>
+      <!--普通的消费者（ZooKeeper）-->
+      <module>cloud-consumerzk-order80</module>
+      <!--普通的消费者（Consul）-->
+      <module>cloud-consumerconsul-order80</module>
+      <!--使用Feign进行服务调用的消费者-->
+      <module>cloud-consumer-feign-order80</module>
+      <!--使用Feign和hystrix的消费者-->
+      <module>cloud-consumer-feign-hystrix-order80</module>
+      <!--Hystrix的dashboard界面（监控）-->
+      <module>cloud-consumer-hystrix-dashboard9001</module>
+      <!--抽取出的通用组件-->
+      <module>cloud-api-commons</module>
+      <!--注册中心1-->
+      <module>cloud-eureka-server7001</module>
+      <!--注册中心2-->
+      <module>cloud-eureka-server7002</module>
+      <!--网关-->
+      <module>cloud-gateway-gateway9527</module>
+
+      <!--Nacos作为注册中心-->
+      <module>cloudalibaba-provider-payment9001</module>
+      <module>cloudalibaba-provider-payment9002</module>
+      <module>cloudalibaba-consumer-nacos-order83</module>
+
+      <!--Nacos作为配置中心-->
+      <module>cloudalibaba-config-nacos-client3377</module>
+
+      <!--sentinel-->
+      <module>cloudalibaba-sentinel-service8401</module>
+
+      <!--sentinel的@SentinelResource注解-->
+      <module>cloudalibaba-provider-payment9003</module>
+      <module>cloudalibaba-provider-payment9004</module>
+      <module>cloudalibaba-consumer-nacos-order84</module>
+
+      <!--seata-->
+      <module>seata-order-service2001</module>
+      <module>seata-storage-service2002</module>
+      <module>seata-account-service2003</module>
+  </modules>
+  <packaging>pom</packaging>
+  <!--统一管理jar包版本-->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <junit.version>4.12</junit.version>
+    <lombok.version>1.18.10</lombok.version>
+    <log4j.version>1.2.17</log4j.version>
+    <mysql.version>8.0.17</mysql.version>
+    <druid.version>1.1.17</druid.version>
+    <mybatis.spring.boot.version>2.2.2</mybatis.spring.boot.version>
+  </properties>
+  <!--子模块继承之后，提供作用：锁定版本+子module不用谢groupId和version-->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.0.0</version>
+      </dependency>
+      <!--spring boot 2.2.2-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+<!--        <version>2.2.2.RELEASE</version>-->
+        <version>2.3.12.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--spring cloud Hoxton.SR1-->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+<!--        <version>Hoxton.SR1</version>-->
+        <version>Hoxton.SR12</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--spring cloud 阿里巴巴-->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+<!--        <version>2.1.0.RELEASE</version>-->
+        <version>2.2.7.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--mysql-->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <!-- druid-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+      <!--mybatis-->
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>${mybatis.spring.boot.version}</version>
+      </dependency>
+      <!--junit-->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+      </dependency>
+      <!--log4j-->
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+    </dependencies>
+
+  </dependencyManagement>
+
+<!--  <build>-->
+<!--    <plugins>-->
+<!--      <plugin>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--        <configuration>-->
+<!--          <fork>true</fork>-->
+<!--          <addResources>true</addResources>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
+<!--    </plugins>-->
+<!--  </build>-->
+</project>

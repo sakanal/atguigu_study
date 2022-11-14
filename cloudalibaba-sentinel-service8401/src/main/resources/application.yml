@@ -1,0 +1,38 @@
+server:
+  port: 8401
+
+spring:
+  application:
+    name: cloudalibaba-sentinel-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #Nacos服务注册中心地址
+    sentinel:
+      transport:
+        dashboard: localhost:8080 #配置Sentinel dashboard地址
+        #默认8719端口，假如被占用自动从8719开始依次+1扫描，直至找到未被占用的端口
+        port: 8719
+      datasource: #<---------------------------关注点，添加Nacos数据源配置
+        #数据源名称，可以随意更改
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: cloudalibaba-sentinel-service
+            groupId: DEFAULT_GROUP
+            #data-type这个属性没有提示，和Nacos配置的类型保持一致
+            data-type: json
+            #authority（授权规则）、degrade（降级规则）、flow（流控规则）、param（热点规则）、system（系统规则）五种规则持久化到Nacos中。
+            #另外还增加网关的两个（api分组，限流）
+            #rule-type这个属性没有提示，为空时，会报空指针错误
+            rule-type: flow
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+feign:
+  sentinel:
+    enabled: true # 激活Sentinel对Feign的支持
