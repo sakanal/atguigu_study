@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <link rel="stylesheet" href="/static/ElementUI/index.css">
+    <link rel="icon" href="/static/ElementUI/fonts/element-icons.ttf">
+    <link rel="icon" href="/static/ElementUI/fonts/element-icons.woff">
+    <body>
+        <h1>秒杀demo</h1>
+        <div id="vue">
+            <el-row :gutter="20">
+                <el-col :span="6">
+                    <div class="grid-content bg-purple">
+                        <el-form :model="userForm" label-width="80px">
+                            <el-form-item label="用户">
+                                <el-input v-model="userForm.userId"></el-input>
+                            </el-form-item>
+                            <el-form-item label="商品">
+                                <el-input v-model="userForm.goodsId"></el-input>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="getUserId">创建用户</el-button>
+                                <el-button type="primary" @click="startSecKill">开始秒杀</el-button>
+                                <el-button type="primary" @click="startSecKill">秒杀</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div class="grid-content bg-purple">
+                        <el-form :model="goodsForm" label-width="80px">
+                            <el-form-item label="商品id">
+                                <el-input v-model="goodsForm.goodsId"></el-input>
+                            </el-form-item>
+                            <el-form-item label="商品库存">
+                                <el-input v-model="goodsForm.goodsStock"></el-input>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="addStock">添加库存</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </div>
+                </el-col>
+            </el-row>
+            <p v-text="result"></p>
+        </div>
+    </body>
+
+    <script src="/static/js/axois.js"></script>
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/ElementUI/index.js"></script>
+    <script type="text/javascript">
+        var vue=new Vue({
+            el:"#vue",
+            data:{
+                userForm:{
+                  userId:"",
+                  goodsId:"101",
+                },
+                goodsForm:{
+                    goodsId:"",
+                    goodsStock:"",
+                },
+                result:""
+            },
+            methods:{
+                startSecKill(){
+                    axios({
+                        methods: "get",
+                        url:"/secKill",
+                        params:{
+                            userId:vue.userForm.userId,
+                            goodsId:vue.userForm.goodsId,
+                        }
+                    }).then(function (result){
+                        vue.result=result.data
+                    })
+                },
+                getUserId(){
+                    axios({
+                        methods:"get",
+                        url:"/getUserId"
+                    }).then(function (result){
+                        vue.userForm.userId=result.data;
+                    })
+                },
+                addStock(){
+                    axios({
+                        methods:"get",
+                        url:"/addStock",
+                        params:{
+                            goodsId:vue.goodsForm.goodsId,
+                            goodsStock: vue.goodsForm.goodsStock,
+                        }
+                    }).then(function (result){
+                        console.log(result)
+                        this.Vue.prototype.$notify.success({
+                            title: '成功',
+                            showClose: false,
+                            message : result.data.message,
+                            duration : 800,
+                        });
+                    })
+                }
+            },
+        })
+    </script>
+</html>
