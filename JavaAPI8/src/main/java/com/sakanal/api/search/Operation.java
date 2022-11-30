@@ -3,15 +3,9 @@ package com.sakanal.api.search;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch.core.*;
-import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
-import co.elastic.clients.elasticsearch.core.bulk.CreateOperation;
-import co.elastic.clients.elasticsearch.core.bulk.DeleteOperation;
-import com.sakanal.api.bean.User;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
 import com.sakanal.api.utils.ESClientUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Operation {
     public static void main(String[] args) throws Exception {
