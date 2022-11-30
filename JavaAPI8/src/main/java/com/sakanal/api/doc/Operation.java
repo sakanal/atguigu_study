@@ -51,6 +51,7 @@ public class Operation {
         DeleteResponse deleteResponse = client.delete(deleteRequest);
         System.out.println(deleteResponse);
 
+        // 批量文档删除
         operationList = new ArrayList<BulkOperation>();
         for (int i = 1; i <= 5; i++) {
             User userInfo = new User(2000L+i,"李四"+i,18);
