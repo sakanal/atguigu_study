@@ -1,11 +1,8 @@
 package com.sakanal.api.index;
 
 import co.elastic.clients.elasticsearch.indices.*;
-import co.elastic.clients.elasticsearch.security.User;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import com.sakanal.api.utils.ESClientUtils;
-
-import java.io.IOException;
 
 public class Operation {
     public static void main(String[] args) throws Exception {
