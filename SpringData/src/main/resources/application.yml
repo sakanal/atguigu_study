@@ -1,0 +1,13 @@
+# yml配置elasticsearch客户端地址（可配置项有限）
+spring:
+  elasticsearch:
+      uris: http://localhost:9200 # elasticsearch 连接地址
+      username: elastic # 用户名
+      password: 123456 # 密码
+      connection-timeout: 10s # 连接超时时间（默认1s）
+
+# 方便查询发送的http请求详细内容
+logging:
+  level:
+    root: info
+    org.springframework.data.elasticsearch.client.WIRE: trace

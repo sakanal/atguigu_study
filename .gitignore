@@ -1,2 +1,6 @@
 /JavaAPI8/certs/es-api-ca.crt
 /JavaAPI8/certs/http_ca.crt
+**/.mvn/
+**/mvnw.cmd
+**/mvnw
+**/.gitignore
